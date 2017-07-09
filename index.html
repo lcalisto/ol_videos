@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Movies with ol</title>
+<link rel="stylesheet"
+	href="https://openlayers.org/en/v4.2.0/css/ol.css" type="text/css">
+<!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+<script
+	src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+<script src="https://openlayers.org/en/v4.2.0/build/ol.js"></script>
+</head>
+<body>
+	<div id="map" class="map"></div>
+	<script>
+		
+		function videoInitialPlay() {
+			if(document.getElementById('playPauseControlImg').src.slice(document.getElementById('playPauseControlImg').src.length-8,-4)=='play'){
+				document.getElementById('playPauseControlImg').src='img/pause.png';
+			}
+			video.currentTime=0;
+			video.play();
+			}
+		function showAnimLayer(inputVideoWebm,inputVideoMp,extents,type,playbackRate,showHours,videoOpacity) {
+		//first lets remove any anim layer if exists
+		//mapController.removeAnimLayer();
+		//mainController.addDataInLayerArray(loadedLayers[0].id,'animtype',type);
+		//mainController.addDataInLayerArray(loadedLayers[0].id,'datatype','animation');
+		//mainController.addDataInLayerArray(loadedLayers[0].id,'loaded',true);
+		var bbox=["30.0", "10.0", "59.9","39.9"];
+		var extents=ol.proj.transformExtent([parseFloat(bbox[0]),parseFloat(bbox[1]),parseFloat(bbox[2]),parseFloat(bbox[3])],'EPSG:4326', 'EPSG:3857');
+			var bbox=["30.0", "10.0", "59.9","39.9"];
+			var corners=[
+			 [extents[0], extents[3]],
+			 [extents[2], extents[3]],
+			 [extents[2], extents[1]],
+			 [extents[0], extents[1]]
+			 ];
+		var baseLayer=new ol.layer.Image({
+			name:'blankLayer',
+			source: new ol.source.ImageStatic({
+				url: 'img/blanklayer.png',
+				projection: map.getView().getProjection(),
+				imageExtent: extents,
+			})
+		});
+		//Video is a global so we can remove it later
+		video = document.createElement('video');
+		video.setAttribute("id", "videoElement");
+		video.crossOrigin = 'Anonymous';
+		var inputVideo = [
+		                  [inputVideoWebm,'video/webm'],
+		                  [inputVideoMp,'video/mp4'],
+		                  ];
+		for (var i = 0; i < inputVideo.length; i++) {
+			var source = document.createElement('source');
+			source.src = inputVideo[i][0];
+			source.type=inputVideo[i][1];
+			video.appendChild(source);
+		}
+		/////////////////////// Video Control ////////////////////////////////
+		/**
+		 * Create an control to anchor the popup to the map.
+		 */
+		var windowcontainer= document.createElement('div');
+		windowcontainer.setAttribute("id", "windowAnim");
+		var windowcontent= document.createElement('div');
+		windowcontent.setAttribute("id", "windowAnim-content");
+		windowcontainer.appendChild(windowcontent);  
+		windowcontainer.className = "ol-animwindow";
+		windowcontainer.onclick = function() {
+		};
+		//global so we can remove it later
+		videoControl = new ol.control.Control({
+			element: windowcontainer
+		});
+		windowcontent.innerHTML = '<center><i><div id="dateLegend"></div></center><br>';
+		windowcontent.innerHTML += '&nbsp;&nbsp;&nbsp;<img src="img/fastback.png" onclick="document.getElementById(\'playPauseControlImg\').src=\'img/play.png\';mapController.videoPause();video.currentTime = video.duration-showHours;" style="height:20px;"/>&nbsp;&nbsp;&nbsp;';
+		windowcontent.innerHTML += '&nbsp;&nbsp;&nbsp;<img src="img/back.png" onclick="document.getElementById(\'playPauseControlImg\').src=\'img/play.png\';mapController.videoPause();if(video.currentTime <= video.duration-showHours){video.currentTime = video.duration-showHours}else{video.currentTime-=1;}" style="height:20px;"/>&nbsp;&nbsp;&nbsp;';
+		windowcontent.innerHTML += '&nbsp;&nbsp;&nbsp;&nbsp;<img id="playPauseControlImg" src="img/pause.png" onclick="if(document.getElementById(\'playPauseControlImg\').src.slice(document.getElementById(\'playPauseControlImg\').src.length-8,-4)==\'play\'){document.getElementById(\'playPauseControlImg\').src=\'img/pause.png\';mapController.videoPlay();}else{document.getElementById(\'playPauseControlImg\').src=\'img/play.png\';mapController.videoPause();}" style="height:20px;"/>&nbsp;&nbsp;&nbsp;&nbsp;';
+		windowcontent.innerHTML += '&nbsp;&nbsp;&nbsp;<img src="img/forward.png" onclick="document.getElementById(\'playPauseControlImg\').src=\'img/play.png\';mapController.videoPause();video.currentTime+=1;" style="height:20px;"/>&nbsp;&nbsp;&nbsp;';
+		windowcontent.innerHTML += '&nbsp;&nbsp;&nbsp;<img src="img/fastforward.png" onclick="document.getElementById(\'playPauseControlImg\').src=\'img/play.png\';mapController.videoPause();video.currentTime=showHours-1;" style="height:20px;"/>&nbsp;&nbsp;&nbsp;';
+		windowcontainer.style.display = 'block';
+		map.addControl(videoControl);
+		////////////////////////Video events///////////////////////////////////////////
+		video.playbackRate=playbackRate;
+		video.addEventListener('ended', function () {
+			if(document.getElementById('playPauseControlImg').src.slice(document.getElementById('playPauseControlImg').src.length-8,-4)=='play'){
+				document.getElementById('playPauseControlImg').src='img/pause.png';
+			}
+			this.currentTime = 0;
+			this.play();
+		}, false);
+		//var videoTimeStamps=Ext.JSON.decode(loadedLayers[0].timeStamps);
+		video.addEventListener('timeupdate', function () {
+			if(typeof(video)!='undefined'){
+				if(video.currentTime>showHours){
+					video.currentTime = 0;
+				}
+				// in case IE 10 or bellow
+				if(navigator.appName!='Netscape') {
+					var currentTimeUpdate=video.currentTime.toFixed(0);
+					if(currentTimeUpdate<3){
+						var currentTimeStamp=new Date(videoTimeStamps[0]);
+					}else{
+						var currentTimeStamp=new Date(videoTimeStamps[currentTimeUpdate-3]);
+					}
+					dateLegend.innerHTML =currentTimeStamp.toGMTString().substring(0,currentTimeStamp.toGMTString().length-7)+" UTC";
+				}
+				else{
+					//the last frame is repeated so the time is the same as the previous
+					//var currentTimeUpdate=video.currentTime.toFixed(0);
+					//if(typeof(videoTimeStamps[currentTimeUpdate])=='undefined'){
+					//	var currentTimeStamp=new Date(videoTimeStamps[currentTimeUpdate-1]);
+					//}else{
+					//	var currentTimeStamp=new Date(videoTimeStamps[currentTimeUpdate]);
+					//}
+					//dateLegend.innerHTML =currentTimeStamp.toGMTString().substring(0,currentTimeStamp.toGMTString().length-7)+" UTC";
+				}
+			}
+		}, false);
+		video.addEventListener('loadeddata', function() {
+			// Video is loaded and can be played
+			videoInitialPlay();
+		}, false);
+		////////////////////////////////////////////////////////////////////
+		var topLeft = corners[0];
+		var topRight = corners[1];
+		var bottomRight = corners[2];
+		var height = topRight[1] - bottomRight[1];
+		var width = topRight[0] - topLeft[0];
+		var dx = width;
+		var dy = topLeft[1] - topRight[1];
+		// no rotation needed, nevertheless if it was needed it was like this
+		var rotation = Math.atan2(dy, dx);
+		postcomposeKey=baseLayer.on('postcompose', function(event) {
+			var frameState = event.frameState;
+			var resolution = frameState.viewState.resolution;
+			var origin = map.getPixelFromCoordinate(topLeft);
+			var context = event.context;
+			context.save();
+			context.scale(frameState.pixelRatio, frameState.pixelRatio);
+			context.translate(origin[0], origin[1]);
+			context.rotate(rotation);
+			context.globalAlpha = videoOpacity;
+			context.drawImage(video, 0, 0, width/ resolution, height/ resolution);
+			context.restore();
+		});
+		map.addLayer(baseLayer);
+		// 10 frames per second
+		animInterval=setInterval(function() {
+			map.render();
+		}, 1000 / 10);
+		//mapController.showLegend();
+		}
+		
+		
+      var map = new ol.Map({
+        controls: ol.control.defaults({
+          attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+            collapsible: false
+          })
+        }),
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        target: 'map',
+        view: new ol.View({
+          center: [0, 0],
+          zoom: 2
+        })
+      });
+      showAnimLayer('20170321_Wind.mp4',null,null,null,1,10,0.5);
+      
+    </script>
+</body>
+</html>
