@@ -74,7 +74,7 @@
     			map.render();
     		}
         }
-        function showAnimLayer(inputVideoWebm, inputVideoMp, bbox, playbackRate, showSeconds_, videoOpacity, legend, map) {
+        function showAnimLayer(inputVideoWebm, inputVideoMp, bbox, map, playbackRate, showSeconds_, videoOpacity, legend) {
             /****************************************************
 				This function creates the folowing globals:
 					video;	
@@ -279,7 +279,7 @@
 		var framerate=1;
 		var showSeconds='all';
 		var opacity=0.5;
-        showAnimLayer('example.mp4', 'example.webm', bbox, framerate, showSeconds, opacity,legend, map);
+        showAnimLayer('example.mp4', 'example.webm', bbox, map, framerate, showSeconds, opacity,legend);
     </script>
 </body>
 
