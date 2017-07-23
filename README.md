@@ -1,8 +1,10 @@
-# ol_videos
+# Videos in OpenLayers
 
-Example on how to use videos in OpenLayers 3.x and above. This example uses OpenLayers 4.20
+Example on how to use videos in OpenLayers 3.x and above. This example uses OpenLayers 4.20.
 
-This examples adds a video in format mp4 and webm to a OpenLayers layer. Also this adds video controls and a custom legend to the map.
+This examples adds a video in format _mp4_ and _webm_ to a OpenLayers layer. Also this adds video controls and a custom legend to the map.
+
+This usage can be important for weather forecast, satellite data and many other usages.
 
 ## Running the App
 
