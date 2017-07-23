@@ -12,9 +12,12 @@ Just check the index.html for details.
 
 ### Notes
 
-The main function in this example is __showAnimLayer('example.mp4', 'example.webm', bbox, framerate, showSeconds, opacity, legend, map);__
+The main function in this example is:
+```
+showAnimLayer('example.mp4', 'example.webm', bbox, framerate, showSeconds, opacity, legend, map);
+```
 
-For browser compatibility both mp4 and webm videos can be added. You need to provide at least one video (mp4 or webm).
+For browser compatibility both __mp4__ and __webm__ videos can be added. You need to provide at least one video (mp4 or webm).
 
 __bbox__ (_required_) is the bonding box array. 
 
