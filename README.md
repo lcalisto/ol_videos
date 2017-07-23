@@ -18,7 +18,7 @@ A live example in :
 
 The main function is:
 ```
-showAnimLayer('example.mp4', 'example.webm', bbox, framerate, showSeconds, opacity, legend, map);
+showAnimLayer('example.mp4', 'example.webm', bbox, map, framerate, showSeconds, opacity, legend)
 ```
 
 For browser compatibility both __mp4__ and __webm__ videos can be added. You need to provide at least one video (mp4 or webm).
@@ -34,7 +34,7 @@ __showSeconds__ (_optional_) Allows the user to only limit the video. For exampl
 
 __opacity__ (_optional_) Allows the user to specify the video opacity. If __none__ or __null__ is provided then the default value is 0.5 (50%).
 
-__legend__ (_optional_) The legend must be a JSON object with at least same number of elements as the number of displayed frames. You can customize the number of displayed frames with __showSeconds__ variable.
+__legend__ (_optional_) The legend must be a JSON object with at least the same number of elements as the number of displayed frames. You can customize the number of displayed frames with __showSeconds__ variable.
 
 
 Function __removeAnimLayer(map)__ removes the loaded video, where __map__ variable is the map were the video is loaded:
