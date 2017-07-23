@@ -2,7 +2,9 @@
 
 Example on how to use videos in OpenLayers 3.x and above. This example uses _OpenLayers 4.2.0_.
 
-This examples adds a video in format _mp4_ and _webm_ to a OpenLayers layer. Also adds video controls and a custom legend to the map.
+This examples adds a video in format _mp4_ and _webm_ to a OpenLayers layer, then you can control it just like a normal OL layer. Also adds video controls and a custom legend to the map.
+
+This example was initially based on the _postcompose_ hook example by @tschaub, see [http://tschaub.net/ol3-video/examples/video.html](http://tschaub.net/ol3-video/examples/video.html).
 
 This example can be applied to weather forecast, satellite data and many other usages.
 
