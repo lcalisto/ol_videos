@@ -4,7 +4,7 @@ Example on how to use videos in OpenLayers 3.x and above. This example uses Open
 
 This examples adds a video in format mp4 and webm to a OpenLayers layer. Also this adds video controls and a custom legend to the map.
 
-##Running the App
+## Running the App
 
 Just check the index.html for details.
 
