@@ -33,7 +33,7 @@ __opacity__ (_optional_) Allows the user to specify the video opacity. If __none
 __legend__ (_optional_) The legend must be a JSON object with at least same number of elements as the number of displayed frames. You can customize the number of displayed frames with __showSeconds__ variable.
 
 
-Function __removeAnimLayer(map)__ removes the loaded video, where __map__ variable is the map were the video is loaded.
+Function __removeAnimLayer(map)__ removes the loaded video, where __map__ variable is the map were the video is loaded:
 ```
 removeAnimLayer(map);
 ```
