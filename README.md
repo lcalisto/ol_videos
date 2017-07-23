@@ -10,6 +10,10 @@ This usage can be important for weather forecast, satellite data and many other 
 
 Just check the index.html for details.
 
+A live example in :
+
+[__https://htmlpreview.github.io/?https://github.com/lcalisto/ol_videos/blob/master/index.html__](https://htmlpreview.github.io/?https://github.com/lcalisto/ol_videos/blob/master/index.html)
+
 ### Notes
 
 The main function is:
