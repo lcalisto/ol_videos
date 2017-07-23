@@ -23,19 +23,19 @@ showAnimLayer('example.mp4', 'example.webm', bbox, map, framerate, showSeconds, 
 
 For browser compatibility both __mp4__ and __webm__ videos can be added. You need to provide at least one video (mp4 or webm).
 
-__bbox__ (_required_) is the bonding box array. 
+__bbox__ (_required_) is the bounding box array. 
 
-__map__ (_required_) The map were the video is going to be displayed.
+__map__ (_required_) The map where the video is going to be displayed.
 
-__framerate__ (_optional_) is the framerate of the movie, if __none__ or __null__ is provided then the default value is 1.
+__framerate__ (_optional_) is the framerate of the movie, if __none__ or __null__ is provided, then the default value is 1.
 
-__showSeconds__ (_optional_) Allows the user to only limit the video. For example if the video as 60 seconds in total and you provide __showSeconds=30__ then only the initial 30 seconds will be displayed, after 30 seconds the video will start from the beginning. If __none__ , __null__ or __'all'__ is provided then the full video will be displayed.
+__showSeconds__ (_optional_) Allows the user to limit the video seconds. For example, if the video has 60 seconds in total and you provide __showSeconds=30__ then only the initial 30 seconds will be displayed, after 30 seconds the video will start from the beginning. If __none__ , __null__ or __'all'__ is provided, then the full video will be displayed.
 
-
-__opacity__ (_optional_) Allows the user to specify the video opacity. If __none__ or __null__ is provided then the default value is 0.5 (50%).
+__opacity__ (_optional_) Allows the user to specify the video opacity. If __none__ or __null__ is provided, then the default value is 0.5 (50%).
 
 __legend__ (_optional_) The legend must be a JSON object with at least the same number of elements as the number of displayed frames. You can customize the number of displayed frames with __showSeconds__ variable.
 
+### To remove the video
 
 Function __removeAnimLayer(map)__ removes the loaded video, where __map__ variable is the map were the video is loaded:
 ```
