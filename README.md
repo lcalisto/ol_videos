@@ -37,7 +37,7 @@ __legend__ (_optional_) The legend must be a JSON object with at least the same 
 
 ### To remove the video
 
-Function __removeAnimLayer(map)__ removes the loaded video, where __map__ variable is the map were the video is loaded:
+Function __removeAnimLayer(map)__ removes the loaded video, where __map__ variable is the map where the video is loaded:
 ```
 removeAnimLayer(map);
 ```
