@@ -1,6 +1,6 @@
 # Videos in OpenLayers 3.x and above
 
-Example on how to use videos in OpenLayers 3.x and above. This example uses _OpenLayers 4.20_.
+Example on how to use videos in OpenLayers 3.x and above. This example uses _OpenLayers 4.2.0_.
 
 This examples adds a video in format _mp4_ and _webm_ to a OpenLayers layer. Also this adds video controls and a custom legend to the map.
 
@@ -34,3 +34,6 @@ __legend__ (_optional_) The legend must be a JSON object with at least same numb
 
 
 Function __removeAnimLayer(map)__ removes the loaded video, where __map__ variable is the map were the video is loaded.
+```
+removeAnimLayer(map);
+```
