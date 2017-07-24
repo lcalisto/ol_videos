@@ -16,9 +16,9 @@ A live example in :
 
 [__https://htmlpreview.github.io/?https://github.com/lcalisto/ol_videos/blob/master/index.html__](https://htmlpreview.github.io/?https://github.com/lcalisto/ol_videos/blob/master/index.html)
 
-### Notes
+## Notes
 
-#### To add the video:
+### To add the video
 The main function to add a video is:
 ```
 showAnimLayer('example.mp4', 'example.webm', bbox, map, framerate, showSeconds, opacity, legend)
@@ -38,7 +38,7 @@ __opacity__ (_optional_) Allows the user to specify the video opacity. If __none
 
 __legend__ (_optional_) The legend must be a JSON object with at least the same number of elements as the number of displayed frames. You can customize the number of displayed frames with __showSeconds__ variable.
 
-#### To remove the video:
+### To remove the video
 
 Function __removeAnimLayer(map)__ removes the loaded video, where __map__ variable is the map where the video is loaded:
 ```
