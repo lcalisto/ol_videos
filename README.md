@@ -2,7 +2,7 @@
 
 Example on how to use videos in OpenLayers 3.x and above. This example uses _OpenLayers 4.2.0_.
 
-This examples adds a video in format _mp4_ and _webm_ to a OpenLayers layer, then you can control it just like a normal OL layer. Also adds video controls and a custom legend to the map.
+This example adds a video in format _mp4_ and _webm_ to a OpenLayers layer, then you can control it just like a normal OL layer. Also adds video controls and a custom legend to the map.
 
 This example was initially based on the _postcompose_ hook example by @tschaub, see [http://tschaub.net/ol3-video/examples/video.html](http://tschaub.net/ol3-video/examples/video.html).
 
@@ -10,7 +10,7 @@ This example can be applied to weather forecast, satellite data and many other u
 
 ## Running the App
 
-Just check the index.html for details.
+Just check the __index.html__ for details.
 
 A live example in :
 
@@ -18,7 +18,8 @@ A live example in :
 
 ### Notes
 
-The main function is:
+#### To add the video:
+The main function to add a video is:
 ```
 showAnimLayer('example.mp4', 'example.webm', bbox, map, framerate, showSeconds, opacity, legend)
 ```
@@ -37,7 +38,7 @@ __opacity__ (_optional_) Allows the user to specify the video opacity. If __none
 
 __legend__ (_optional_) The legend must be a JSON object with at least the same number of elements as the number of displayed frames. You can customize the number of displayed frames with __showSeconds__ variable.
 
-### To remove the video
+#### To remove the video:
 
 Function __removeAnimLayer(map)__ removes the loaded video, where __map__ variable is the map where the video is loaded:
 ```
