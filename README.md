@@ -14,7 +14,7 @@ Just check the __index.html__ for details.
 
 A live example in :
 
-[__https://htmlpreview.github.io/?https://github.com/lcalisto/ol_videos/blob/master/index.html__](https://htmlpreview.github.io/?https://github.com/lcalisto/ol_videos/blob/master/index.html)
+[__https://lcalisto.github.io/ol_videos/__](https://lcalisto.github.io/ol_videos/)
 
 ## Notes
 
