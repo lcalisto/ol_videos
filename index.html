@@ -3,8 +3,8 @@
 
 <head>
     <title>Movies with ol</title>
-    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
-<link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css">
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css">
     <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
 </head>
@@ -12,6 +12,10 @@
 <body>
     <div id="map" class="map"></div>
     <style>
+        .map {
+            width: 100vw;
+            height: 80vh;
+        }
         .ol-animwindow {
             display: none;
             position: absolute;
@@ -236,7 +240,7 @@
             if (typeof(videoOpacity) == 'undefined' || videoOpacity == null) {
                 videoOpacity = 0.5;
             }
-            postcomposeKey = baseLayer.on('postcompose', function(event) {
+            postcomposeKey = baseLayer.on('postrender', function(event) {
                 var frameState = event.frameState;
                 var resolution = frameState.viewState.resolution;
                 var origin = map.getPixelFromCoordinate(topLeft);
